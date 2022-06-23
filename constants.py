@@ -13,7 +13,7 @@ path_userTicket = f'{rootSource}/data/ticket/'
 
 ticketSource = f"{rootSource}/data/input_ticket.png"
 mainAdmin = 409801981
-admID = [-1001694517257, 409801981, 5523961510]
+admID = [-1001694517257, 409801981, 5523961510, 320518209]
 startCode = "Q"
 blacklist = [528329970]
 ticketTypes = {0: "базовый", 1: "VIP"}
