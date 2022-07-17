@@ -1,7 +1,6 @@
 # python -m pip install -r requirements.txt
-api = "5415315512:AAG0pVam3yDlzKtwWmEvJYgPNwbQiCgfXac"
-rootSource = "D:/lastballbot"
-#rootSource = "/root/bots/lastballbot-env"
+api = "ENTER YOUR APIKEY"
+rootSource = "ENTER YOUR DIRECTORY"
 
 mainTable = "mainTable"
 database = f"{rootSource}/lastball_db.db"
