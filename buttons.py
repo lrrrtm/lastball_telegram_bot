@@ -44,3 +44,9 @@ button_20 = types.InlineKeyboardButton("Нет, оставить ✅", callback_
 button_21 = types.InlineKeyboardButton("Получить билет 📬", callback_data="btn_21")
 
 button_22 = types.InlineKeyboardButton("Билет оплачен 🆗", callback_data="btn_22")
+
+button_23 = types.InlineKeyboardButton("Приветственное слово", callback_data="btn_23")
+button_24 = types.InlineKeyboardButton("Карта мероприятия", callback_data="btn_24")
+button_25 = types.InlineKeyboardButton("Оповещение об окончании", callback_data="btn_25")
+button_26 = types.InlineKeyboardButton("Своё сообщение", callback_data="btn_26")
+button_27 = types.InlineKeyboardButton("Инфо об участнике", callback_data="btn_27")

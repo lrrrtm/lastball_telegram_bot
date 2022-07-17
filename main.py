@@ -2,10 +2,8 @@ import sqlite3
 from PIL import Image, ImageDraw, ImageFont
 import telebot
 import re
-import random
 import qrcode
 from constants import *
-import string
 from buttons import *
 
 bot = telebot.TeleBot(api)
@@ -85,7 +83,6 @@ def getData(message):
             bot.send_message(message.chat.id, text, parse_mode="Markdown")
             bot.send_message(message.chat.id, f"Зарегистрировано: {count}/{len(data)}\nОбщая сумма: {summ} ₽", parse_mode="Markdown")
 
-
 @bot.message_handler(commands=['update'])
 def update(message):
     if int(message.chat.id) in admID:
@@ -93,12 +90,64 @@ def update(message):
         data = cur.fetchall()
         countRegTrue = 0
         countRegFalse = 0
-        for a in data:
+        for x in range(0,21):
+            a = data[x]
             if a[3] == 2:
                 markup = types.InlineKeyboardMarkup(row_width=1)
                 markup.add(button_22)
                 try:
-                    bot.send_message(a[0], f"{a[1]}, {bankDetailsText}", reply_markup=markup, parse_mode="Markdown")
+                    bot.send_message(a[0], f"{a[1]}, {bankDetailsText1}", reply_markup=markup, parse_mode="Markdown")
+                except Exception:
+                    pass
+                countRegTrue += 1
+
+            elif a[3] == 3:
+                try:
+                    bot.send_message(a[0], f"{a[1]}, {cancelRegistrationText}", parse_mode="Markdown")
+                except Exception:
+                    pass
+                countRegFalse += 1
+        for x in range(21,43):
+            a = data[x]
+            if a[3] == 2:
+                markup = types.InlineKeyboardMarkup(row_width=1)
+                markup.add(button_22)
+                try:
+                    bot.send_message(a[0], f"{a[1]}, {bankDetailsText2}", reply_markup=markup, parse_mode="Markdown")
+                except Exception:
+                    pass
+                countRegTrue += 1
+
+            elif a[3] == 3:
+                try:
+                    bot.send_message(a[0], f"{a[1]}, {cancelRegistrationText}", parse_mode="Markdown")
+                except Exception:
+                    pass
+                countRegFalse += 1
+        for x in range(43,64):
+            a = data[x]
+            if a[3] == 2:
+                markup = types.InlineKeyboardMarkup(row_width=1)
+                markup.add(button_22)
+                try:
+                    bot.send_message(a[0], f"{a[1]}, {bankDetailsText3}", reply_markup=markup, parse_mode="Markdown")
+                except Exception:
+                    pass
+                countRegTrue += 1
+
+            elif a[3] == 3:
+                try:
+                    bot.send_message(a[0], f"{a[1]}, {cancelRegistrationText}", parse_mode="Markdown")
+                except Exception:
+                    pass
+                countRegFalse += 1
+        for x in range(64,len(data)):
+            a = data[x]
+            if a[3] == 2:
+                markup = types.InlineKeyboardMarkup(row_width=1)
+                markup.add(button_22)
+                try:
+                    bot.send_message(a[0], f"{a[1]}, {bankDetailsText4}", reply_markup=markup, parse_mode="Markdown")
                 except Exception:
                     pass
                 countRegTrue += 1
@@ -110,8 +159,6 @@ def update(message):
                     pass
                 countRegFalse += 1
         bot.send_message(message.chat.id, f"Всего: {len(data)}\nОтправлено: {countRegFalse+countRegTrue}/{len(data)}\nПодтверждено: {countRegTrue}\nОтклонено: {countRegFalse}", parse_mode="Markdown")
-
-
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call):
@@ -300,7 +347,6 @@ def callback(call):
             msg = bot.send_message(tID, sendSberText, parse_mode="Markdown")
             bot.register_next_step_handler(msg, sberPhoto)
 
-
 @bot.message_handler(commands=['black'])
 def black(message):
     if int(message.chat.id) in admID:
@@ -312,7 +358,6 @@ def black2(message):
         bot.send_message(message.chat.id, f"Пользователь {message.text} добавлен в чёрный список")
     except Exception as e:
         bot.send_message(message.chat.id, errorA + str(e))
-
 
 @bot.message_handler(content_types=['text'])
 def checkCode(message):
@@ -359,7 +404,6 @@ def photo(message):
         bot.send_message(mainAdmin, f"Ошибка у пользователя {tID} при отправке своей фотографии: {str(e)}", parse_mode="Markdown")
         msg = bot.send_message(message.chat.id, errorA, parse_mode="Markdown")
         bot.register_next_step_handler(msg, photo)
-
 
 def sberPhoto(message):
     tID = message.chat.id
