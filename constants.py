@@ -1,6 +1,6 @@
 # python -m pip install -r requirements.txt
-api = "ENTER YOUR APIKEY"
-rootSource = "ENTER YOUR DIRECTORY"
+api = "API-KEY-HERE"
+rootSource = "SOURCE-HERE"
 
 mainTable = "mainTable"
 database = f"{rootSource}/lastball_db.db"
